@@ -52,7 +52,7 @@ class LlamaTestbed:
         return answer
 
     def __test_model_logits(self, test_model, prompt, max_tokens, verify_mode):
-        m = LlamaForCausalLM.from_pretrained(test_model, low_cpu_mem_usage=True)
+        m = LlamaForCausalLM.from_pretrained(test_model, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)
 
         number_of_words = len(prompt.split())
         tokenizer = LlamaTokenizer.from_pretrained(test_model)
@@ -99,12 +99,11 @@ class LlamaTestbed:
 class ArgParser():
 
     def __init__(self):
-        self.default_test_model = "/data/models/meta-llama/Llama-2-7b-hf"
-        #self.default_test_model = "/data/models/meta-llama/Llama-2-13b-chat-hf"
+        self.default_test_model = "/data/models/meta-llama/Llama-2-7b-chat-hf"
         self.default_prompt = "Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun"
         self.default_max_tokens = 50
         self.default_verify_mode = False
-        self.default_verify_answer = "Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun. She wanted to be a part of something bigger than herself. She wanted to be a part"
+        self.default_verify_answer = "Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun. But her parents were always telling her to stay at home and be careful. They were wor"
 
     def get_user_parameters(self):
         arg_parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)

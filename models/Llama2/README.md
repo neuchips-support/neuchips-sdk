@@ -54,7 +54,7 @@ This will import the Neuchips PyTorch extension into your Python environment. Yo
 Before running the sample, you should prepare the model data and modify the path settings in the sample code.
 
 ```
-self.default_test_model = "/data/models/meta-llama/Llama-2-7b-hf"
+self.default_test_model = "/data/models/meta-llama/Llama-2-7b-chat-hf"
 ```
 When everything is ready, execute the sample and explore with the program.
 
@@ -65,13 +65,13 @@ cd examples && python3 test_llama_for_release.py
 
 
 # Supported Models
-We currently only support Hugging Face Transformers-formatted models (LlamaForCausalLM). We will update this list once we have verified more models.
+We currently only support Hugging Face Transformers-formatted models (LlamaForCausalLM and MistralForCausalLM). We will update this list once we have verified more models.
 
 | Name | Url |
 |------|-----|
 | LLaMA 2 7B | https://huggingface.co/meta-llama/Llama-2-7b-hf |
 | LLaMA 2 7B Chat | https://huggingface.co/meta-llama/Llama-2-7b-chat-hf |
-LLaMA 2 13B | https://huggingface.co/meta-llama/Llama-2-13b-hf |
+| LLaMA 2 13B | https://huggingface.co/meta-llama/Llama-2-13b-hf |
 | LLaMA 2 13B Chat | https://huggingface.co/meta-llama/Llama-2-13b-chat-hf |
 | Code Llama 7B | https://huggingface.co/codellama/CodeLlama-7b-hf |
 | Code Llama 7B Python | https://huggingface.co/codellama/CodeLlama-7b-Python-hf |
@@ -79,3 +79,19 @@ LLaMA 2 13B | https://huggingface.co/meta-llama/Llama-2-13b-hf |
 | Code Llama 13B Python | https://huggingface.co/codellama/CodeLlama-13b-Python-hf |
 | ELYZA-japanese-Llama-2-7b | https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b |
 | | https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-instruct |
+| Mistral 7B | https://huggingface.co/mistralai/Mistral-7B-v0.1 |
+| | https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2 |
+| Breeze 7B | https://huggingface.co/MediaTek-Research/Breeze-7B-Base-v1_0 |
+| | https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0 |
+
+
+# Performance
+The following is the performance data of each model when the input and output lengths are 128 tokens, the unit is tps (tokens per second)
+
+| Model | Prompt | Generation | Performance |
+|-------|--------|------------|-------------|
+| LLaMA 2 7B | 7.0 | 6.1 | 3.3 |
+| LLaMA 2 13B | 3.5 | 3.2 | 1.7 |
+| Mistral 7B | 6.7 | 6.0 | 3.2 |
+| Breeze 7B | 6.7 | 5.9 | 3.2 |
+
