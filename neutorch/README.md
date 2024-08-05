@@ -73,6 +73,8 @@ We currently only support Hugging Face Transformers-formatted models (LlamaForCa
 | LLaMA 2 7B Chat | https://huggingface.co/meta-llama/Llama-2-7b-chat-hf |
 | LLaMA 2 13B | https://huggingface.co/meta-llama/Llama-2-13b-hf |
 | LLaMA 2 13B Chat | https://huggingface.co/meta-llama/Llama-2-13b-chat-hf |
+| LLaMA 3 8B | https://huggingface.co/meta-llama/Meta-Llama-3-8B |
+| | https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct |
 | Code Llama 7B | https://huggingface.co/codellama/CodeLlama-7b-hf |
 | Code Llama 7B Python | https://huggingface.co/codellama/CodeLlama-7b-Python-hf |
 | Code Llama 13B | https://huggingface.co/codellama/CodeLlama-13b-hf |
@@ -83,6 +85,7 @@ We currently only support Hugging Face Transformers-formatted models (LlamaForCa
 | | https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2 |
 | Breeze 7B | https://huggingface.co/MediaTek-Research/Breeze-7B-Base-v1_0 |
 | | https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0 |
+| Phi-2 | https://huggingface.co/microsoft/phi-2 |
 
 
 # Performance
@@ -90,8 +93,18 @@ The following is the performance data of each model when the input and output le
 
 | Model | Prompt | Generation | Performance |
 |-------|--------|------------|-------------|
-| LLaMA 2 7B | 7.0 | 6.1 | 3.3 |
-| LLaMA 2 13B | 3.5 | 3.2 | 1.7 |
-| Mistral 7B | 6.7 | 6.0 | 3.2 |
-| Breeze 7B | 6.7 | 5.9 | 3.2 |
+| LLaMA 2 7B | 7.3 | 6.3 | 3.4 |
+| LLaMA 3 8B | 6.8 | 5.7 | 3.1 |
+| Mistral 7B | 7.0 | 6.2 | 3.3 |
+| Breeze 7B | 6.9 | 6.1 | 3.3 |
+| Phi-2 | 12.4 | 9.9 | 5.5 |
 
+When `use_matrix=True` is applied in `neutorch._C.set_device()`, the tps for prompt will be increased.
+
+| Model | Prompt | Generation | Performance |
+|-------|--------|------------|-------------|
+| LLaMA 2 7B | 98.7 | 6.1 | 5.7 |
+| LLaMA 3 8B | 73.2 | 5.4 | 5.0 |
+| Mistral 7B | 103.1 | 6.1 | 5.8 |
+| Breeze 7B | 85.4 | 5.7 | 5.3 |
+| Phi-2 | 179.8 | 7.0 | 6.7 |
