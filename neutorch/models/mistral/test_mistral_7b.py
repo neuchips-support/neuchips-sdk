@@ -27,12 +27,9 @@ device_ids = neutorch._C.get_available_devices()
 print(device_ids)
 neutorch._C.set_device(device_ids[:1])
 
-# Set max_batch_size
-max_batch_size = 128
-
 compiled_model_path = os.path.join(os.getcwd(), 'data') if os.path.exists(os.path.join(os.getcwd(), 'data')) else ''
 print("Specified load model from", compiled_model_path)
-model = neutorch.optimize(model, max_batch_size=max_batch_size, inplace=True, config_dir=compiled_model_path)
+model = neutorch.optimize(model, usage_pattern="general", inplace=True, config_dir=compiled_model_path)
 
 p = pipeline("text-generation", model=model, torch_dtype=torch.bfloat16, device_map="auto", tokenizer=tokenizer)
 _streamer = TextStreamer(tokenizer)

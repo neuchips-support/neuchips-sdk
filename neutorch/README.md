@@ -75,17 +75,28 @@ We currently only support Hugging Face Transformers-formatted models (LlamaForCa
 | LLaMA 2 13B Chat | https://huggingface.co/meta-llama/Llama-2-13b-chat-hf |
 | LLaMA 3 8B | https://huggingface.co/meta-llama/Meta-Llama-3-8B |
 | | https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct |
+| LLaMA 3.1 8B | https://huggingface.co/meta-llama/Llama-3.1-8B |
+| | https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct |
+| LLaMA 3.2 3B | https://huggingface.co/meta-llama/Llama-3.2-3B |
+| | https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct |
 | Code Llama 7B | https://huggingface.co/codellama/CodeLlama-7b-hf |
 | Code Llama 7B Python | https://huggingface.co/codellama/CodeLlama-7b-Python-hf |
 | Code Llama 13B | https://huggingface.co/codellama/CodeLlama-13b-hf |
 | Code Llama 13B Python | https://huggingface.co/codellama/CodeLlama-13b-Python-hf |
 | ELYZA-japanese-Llama-2-7b | https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b |
 | | https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-instruct |
-| Mistral 7B | https://huggingface.co/mistralai/Mistral-7B-v0.1 |
-| | https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2 |
+| Mistral 7B | https://huggingface.co/mistralai/Mistral-7B-v0.3 |
+| | https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3 |
+| Mistral Nemo | https://huggingface.co/mistralai/Mistral-Nemo-Base-2407 |
+| | https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407 |
 | Breeze 7B | https://huggingface.co/MediaTek-Research/Breeze-7B-Base-v1_0 |
 | | https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0 |
 | Phi-2 | https://huggingface.co/microsoft/phi-2 |
+| Phi-3-mini-4k-instruct | https://huggingface.co/microsoft/Phi-3-mini-4k-instruct |
+| Gemma 2 9B | https://huggingface.co/google/gemma-2-9b |
+| | https://huggingface.co/google/gemma-2-9b-it |
+| TAIDE-LX-7B | https://huggingface.co/taide/TAIDE-LX-7B |
+| | https://huggingface.co/taide/TAIDE-LX-7B-Chat |
 
 
 # Performance

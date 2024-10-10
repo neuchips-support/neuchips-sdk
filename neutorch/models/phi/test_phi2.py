@@ -22,9 +22,6 @@ model = AutoModelForCausalLM.from_pretrained(test_model, torch_dtype="auto", tru
 tokenizer = AutoTokenizer.from_pretrained(test_model,trust_remote_code=True)
 prompt = '''Alice, Bob and Charles are playing games. Alice first pick a random number from 333 to 678, Bob then pick a number starting from Alice’s number to 888, Charles then pick a number starting from 123 to Bob’s number. Alice gets one point if Alice’s number minus Charles’s number is divisible by the floor of the square root of Bob’s number, otherwise Bob gets one point. Simulate Alice’s and Bob’s points in 30 iterations. '''
 
-# Set max_batch_size
-max_batch_size = 256
-
 # Specified your devices
 device_ids = neutorch._C.get_available_devices()
 print(device_ids)
@@ -32,7 +29,7 @@ neutorch._C.set_device(device_ids[:1], use_emb=True, use_matrix=True)
 
 compiled_model_path = os.path.join(os.getcwd(), 'data') if os.path.exists(os.path.join(os.getcwd(), 'data')) else ''
 print("Specified load model from", compiled_model_path)
-model = neutorch.optimize(model, max_batch_size=max_batch_size, inplace=True, config_dir=compiled_model_path)
+model = neutorch.optimize(model, usage_pattern="general", inplace=True, config_dir=compiled_model_path)
 
 p = pipeline("text-generation", model=model, torch_dtype=torch.bfloat16, device_map="auto", tokenizer=tokenizer)
 _streamer = TextStreamer(tokenizer)
