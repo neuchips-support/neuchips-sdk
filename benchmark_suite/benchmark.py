@@ -73,7 +73,7 @@ def model_preparation(test_model, compiled_data, neutorch_max_batch):
     mistral-7b-v02: /home/user/llm_weight/mistral/7B/
     mistral-nemo-12B: mistralai/Mistral-Nemo-Instruct-2407
     '''
-    access_token = "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"
+    access_token = ""
     # test_model = "/home/user/llm_weight/mistral/7B/"
     
     config = AutoConfig.from_pretrained(test_model,
