@@ -51,7 +51,6 @@ class LLMTestbed:
                 torch_dtype="auto",
                 trust_remote_code=True,
                 low_cpu_mem_usage=True,
-                attn_implementation="eager"
             ).to(torch.bfloat16)
             tokenizer = tokenizer_class.from_pretrained(
                 model_path, trust_remote_code=True
@@ -61,7 +60,6 @@ class LLMTestbed:
                 model_path,
                 torch_dtype=torch.bfloat16,
                 low_cpu_mem_usage=True,
-                attn_implementation="eager"
             )
             tokenizer = tokenizer_class.from_pretrained(model_path)
 
