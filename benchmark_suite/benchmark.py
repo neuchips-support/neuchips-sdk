@@ -117,6 +117,7 @@ def model_preparation(test_model, compiled_data, neutorch_max_batch):
       inplace=True,
        config_dir=compiled_data,
     )
+    print("neutorch model: ", neutorch_model)
     print("neutorch compilation time: %4.2f" %(time.time() - neutorch_compilation_start))
 
 
@@ -193,10 +194,17 @@ def model_inference(tokenizer,
                     # currently streaming mode as default
                     start_time = time.time()
                     generation_output = neutorch_model.generate(**inputs,
-                                                    min_new_tokens=i,
+                                                    min_new_tokens=g,
                                                     max_new_tokens=g,
                                                     max_length=i+g,
                                                     streamer=streamer)
+                    # generation_output = neutorch_model.generate(**inputs,
+                    #                                 do_sample=False,
+                    #                                         top_p=1.0,
+                    #                                         temperature=1.0,
+                    #                                         max_new_tokens=g,
+                    #                                         num_return_sequences=1,
+                    #                                 streamer=streamer)
                     total_time = time.time()-start_time
 
                     if g == 1:
