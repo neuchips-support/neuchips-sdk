@@ -2,7 +2,7 @@ HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
 
 # single model benchmark
 python benchmark.py \
-		--target_model ./model_zoo/Llama-3.1-8B-Instruct \
+		--target_model /home/user/kevin/benchmark_suite/model_zoo/Mistral-Nemo-Instruct-2407 \
 		--prompt_gen \
 		--prompt_list "128-256-512-1024-2048" \
 		--gen_list "1-128-256-512-1024-2048" \
