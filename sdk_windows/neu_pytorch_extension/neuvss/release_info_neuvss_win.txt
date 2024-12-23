@@ -1,0 +1,4 @@
+Current Job Name: sdk_runtime/neu_vss_build_win
+Build number: 118
+Commit:
+d378a518b4f13ecd4e5dc7f9fa8223ab2d398637
