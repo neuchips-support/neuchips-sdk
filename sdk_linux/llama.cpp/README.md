@@ -4,15 +4,13 @@ This is the initial llama.cpp support for Viper, for using this tool you have to
 
 # Converting models from HuggingFace
 
-The supporting models are listed in
-[README.md](https://github.com/neuchips-support/neuchips-sdk/tree/main/neutorch#readme),
-by using
-[convert_hf_to_gguf.py](https://github.com/ggerganov/llama.cpp/blob/master/convert_hf_to_gguf.py)
-you can convert those models to gguf format.
+You can find a list of supported models in the [README.md](https://github.com/neuchips-support/neuchips-sdk/tree/main/sdk_linux#readme) file.
+The `convert_hf_to_gguf.py` script (cloned from https://github.com/ggerganov/llama.cpp/tree/0827b2c1da299805288abbd556d869318f2b121e) allows you to convert these models to the gguf format.
 
 Ex: 
 ```
-python convert_hf_to_gguf.py  --outtype f16 /data/models/meta-llama//Meta-Llama-3.1-8B-Instruct --outfile models/Meta-Llama-3.1-8B-Instruct-F16.gguf
+$ conda activate neutorch # (optional, or make sure you have those packages installed: 'sentencepiece, tokenizers, numpy, pyyaml')
+$ python convert_hf_to_gguf.py  --outtype f16 /data/models/meta-llama//Meta-Llama-3.1-8B-Instruct --outfile models/Meta-Llama-3.1-8B-Instruct-F16.gguf
 ```
 
 # Running llama.cpp
