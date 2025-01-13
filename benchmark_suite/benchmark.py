@@ -9,16 +9,9 @@ import torch
 import neutorch
 import argparse
 import time 
+from cpuinfo import get_cpu_info
 
 root_path = "./prompts/"
-
-# file_list = [_ for _ in os.listdir(root_path) if _.endswith(".txt")]
-
-# '''
-#     llama-3-8B: "/home/user/llm_weight/8b_instruct_hf"
-#     phi2: "microsoft/phi-2"
-#     mistral-7b-v02: /home/user/llm_weight/mistral/7B/
-#     llama-2-7B: /home/user/llm_weight/7B-chat/
 
 
 # '''
@@ -82,9 +75,32 @@ def model_preparation(test_model, compiled_data, neutorch_max_batch):
                                                  token=access_token)
     # streamer = TextIteratorStreamer(tokenizer)
     print("loading tokenizer successfully~")
+
+    # cpu arch detection
+    cpu_data = get_cpu_info()
+    attn_option = "sdpa"
+    model_dtype = torch.bfloat16
+
+    # print(cpu_data['brand_raw'])
+    # print(cpu_data['flags'])
+
+    if "AMD" in cpu_data['brand_raw']:
+        attn_option = "eager"
+    else:
+        attn_option = "sdpa"
+    
+    if "avx512_bf16" in cpu_data['flags']:
+        model_dtype = torch.bfloat16
+    else:
+        model_dtype = torch.float32
+
+
+    print("attn_implementation: ", attn_option)
+
     model = AutoModelForCausalLM.from_pretrained(test_model, 
-                                                 torch_dtype=torch.bfloat16, 
+                                                 torch_dtype=model_dtype, 
                                                  low_cpu_mem_usage=True,
+                                                 attn_implementation=attn_option,
                                                  token=access_token
                                                  )
     print("loading LLM successfully~")
@@ -183,28 +199,14 @@ def model_inference(tokenizer,
                     inputs = tokenizer([text], return_tensors="pt", max_length=i)
                     print("inputs size: ", inputs["input_ids"].size())
 
-                    # warm up loop
-                    # for e in range(10):
-                    #     generation_output = neutorch_model.generate(**inputs,
-                    #                                 min_new_tokens=i,
-                    #                                 max_new_tokens=g,
-                    #                                 max_length=i+g,
-                    #                                 streamer=streamer)
-                        
-                    # currently streaming mode as default
+                    
                     start_time = time.time()
                     generation_output = neutorch_model.generate(**inputs,
                                                     min_new_tokens=g,
                                                     max_new_tokens=g,
                                                     max_length=i+g,
                                                     streamer=streamer)
-                    # generation_output = neutorch_model.generate(**inputs,
-                    #                                 do_sample=False,
-                    #                                         top_p=1.0,
-                    #                                         temperature=1.0,
-                    #                                         max_new_tokens=g,
-                    #                                         num_return_sequences=1,
-                    #                                 streamer=streamer)
+                    
                     total_time = time.time()-start_time
 
                     if g == 1:
@@ -214,16 +216,16 @@ def model_inference(tokenizer,
                         with open(benchmark_record_file, 'a', newline='') as csvfile:
                             writer = csv.writer(csvfile)
                             # writer.writerow(['Model Name', "Prompt Length", "Gen Length", "Output TPS"])
-                            writer.writerow([test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(ttft)])
-                            print(" %s | neutorch max batch: %d | input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, 0))
+                            writer.writerow([test_model_path, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(ttft)])
+                            print(" %s |input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, 0))
 
                     else:
                         print(ttft)
                         with open(benchmark_record_file, 'a', newline='') as csvfile:
                             writer = csv.writer(csvfile)
                             # writer.writerow(['Model Name', "Prompt Length", "Gen Length", "Output TPS"])
-                            writer.writerow([test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, g/(total_time - ttft)])
-                            print(" %s | neutorch max batch: %d | input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(total_time - ttft)))
+                            writer.writerow([test_model_path, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, g/(total_time - ttft)])
+                            print(" %s | input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(total_time - ttft)))
 
 
 

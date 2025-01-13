@@ -1,5 +1,11 @@
 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
 
+
+export OMP_SCHEDULE=STATIC
+export OMP_NUM_THREADS=8 #Core(s) per socket
+export OMP_DYNAMIC=FALSE
+
+
 # single model benchmark
 python benchmark.py \
 		--target_model /home/user/kevin/benchmark_suite/model_zoo/Mistral-Nemo-Instruct-2407 \
