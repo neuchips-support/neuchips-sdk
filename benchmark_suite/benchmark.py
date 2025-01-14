@@ -217,7 +217,7 @@ def model_inference(tokenizer,
                             writer = csv.writer(csvfile)
                             # writer.writerow(['Model Name', "Prompt Length", "Gen Length", "Output TPS"])
                             writer.writerow([test_model_path, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(ttft)])
-                            print(" %s |input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, 0))
+                            print(" %s |input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, 0))
 
                     else:
                         print(ttft)
@@ -225,7 +225,7 @@ def model_inference(tokenizer,
                             writer = csv.writer(csvfile)
                             # writer.writerow(['Model Name', "Prompt Length", "Gen Length", "Output TPS"])
                             writer.writerow([test_model_path, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, g/(total_time - ttft)])
-                            print(" %s | input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, neutorch_max_batch, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(total_time - ttft)))
+                            print(" %s | input length: %d | gen length: %d | Total Time: %4.2f | Output TPS %4.2f | Prompt TPS %4.2f | Gen. TPS %4.2f" %(test_model_path, inputs['input_ids'].size()[1], g, total_time, g/total_time, inputs['input_ids'].size()[1]/ttft, (g-1)/(total_time - ttft)))
 
 
 
