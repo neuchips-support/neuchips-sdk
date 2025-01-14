@@ -14,6 +14,11 @@ This Benchmark Suite is designed to evaluate the performance of Neuchips Viper G
 
 ## Requirements
 You need to first follow the SDK instructions to set up the Neutorch environment properly, and most importantly, make sure to insert the Neuchips Viper card 🎇.
+Afterward, install the required Python modules for benchmarking by running the following command:
+```
+pip install -r requirements.txt
+```
+
 
 ## Configuration
 
