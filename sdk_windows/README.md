@@ -12,7 +12,7 @@ The extension can be loaded as a Python module for Python programs. In Python sc
 * (Suggested) From a proven conda environment yml file
 
 ```bash
-conda env create -f neu_pytorch_extension/neutorch/conda/env_windows.yml
+conda env create -f conda/env_windows.yml
 ```
 
 * (Create your) With commands
@@ -45,7 +45,7 @@ copy c:\Users\<USER_NAME>\AppData\Local\Programs\Python\Python310\libs\python3_d
 Once you have obtained the Neuchips PyTorch extension, you can easily install it via `pip`, the installation command is as follows:
 
 ```
-cd script/
+cd script/neutorch
 conda activate neutorch
 python3 gen_requires.py win
 pip3 install --force-reinstall --no-index -r requirements.txt
