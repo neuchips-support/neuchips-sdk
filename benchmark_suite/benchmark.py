@@ -174,7 +174,7 @@ def model_inference(tokenizer,
     with open(benchmark_record_file, 'a', newline='') as csvfile:
       # 建立 CSV 檔寫入器
       writer = csv.writer(csvfile)
-      writer.writerow(['Model Name', "neutorch Max-Batch", "Prompt Length", "Gen Length", "Total Time", "Output TPS", "Prompt TPS", "Gen. TPS"])
+      writer.writerow(['Model Name', "Prompt Length", "Gen Length", "Total Time", "Output TPS", "Prompt TPS", "Gen. TPS"])
     
     
     for i in tqdm(prompt_len_list):
