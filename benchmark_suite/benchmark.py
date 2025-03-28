@@ -113,7 +113,7 @@ def model_preparation(test_model, compiled_data, neutorch_max_batch):
     print("device_ids")
     print(device_ids)
     neutorch._C.set_device(
-        [device_ids[0]], use_emb=True, use_matrix=True
+        [device_ids[0]], use_matrix=True
     )  # single card
 
     # check neutorch_compiled_data existence

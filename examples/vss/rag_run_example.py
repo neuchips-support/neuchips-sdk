@@ -149,7 +149,7 @@ def init_llm(device_id, model_dir, model_cache_dir):
     device_list = neutorch._C.get_available_devices()
     if device_id not in device_list:
         raise RuntimeError(f"The test device {device_id} is not available.")
-    neutorch._C.set_device([ device_id ], use_emb=True, use_matrix=True)
+    neutorch._C.set_device([ device_id ], use_matrix=True)
 
     llm_tokenizer = AutoTokenizer.from_pretrained(model_dir)
     model = LlamaForCausalLM.from_pretrained(model_dir, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)

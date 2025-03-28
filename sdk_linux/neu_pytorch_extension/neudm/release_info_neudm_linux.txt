@@ -1,4 +1,4 @@
 Current Job Name: sdk_runtime/device_manager_build
-Build number: 361
+Build number: 540
 Commit:
-50866df6a7077244bc7230a402909bdad83c426e
+31de7f58433324a89816cbf517b9c61e6832c057
