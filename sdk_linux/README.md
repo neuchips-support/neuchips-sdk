@@ -90,6 +90,7 @@ We currently only support Hugging Face Transformers-formatted models (LlamaForCa
 | | https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3 |
 | Mistral Nemo | https://huggingface.co/mistralai/Mistral-Nemo-Base-2407 |
 | | https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407 |
+| Ministral 8B | https://huggingface.co/mistralai/Ministral-8B-Instruct-2410 |
 | Breeze 7B | https://huggingface.co/MediaTek-Research/Breeze-7B-Base-v1_0 |
 | | https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0 |
 | Phi-2 | https://huggingface.co/microsoft/phi-2 |
