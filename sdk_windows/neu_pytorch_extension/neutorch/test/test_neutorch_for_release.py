@@ -28,7 +28,6 @@ from transformers import (
     pipeline,
 )
 
-from neutorch.conversion.linear import neu_linear
 from path_utils import get_model_path
 
 
