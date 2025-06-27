@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_IMAGE="neuchips/viper_prod:v1.4.1"
+DOCKER_IMAGE="neuchips/viper_prod:v1.2"
 
 CMD=$1
 
@@ -18,7 +18,7 @@ shift
 
 case $CMD in
     build)
-        docker build -f ./Dockerfile -t ${DOCKER_IMAGE} . --no-cache --rm
+        docker build -f ./Dockerfile -t ${DOCKER_IMAGE} .. --no-cache --rm
         ;;
     stop)
         if [ -z $1 ]; then
@@ -48,6 +48,24 @@ case $CMD in
             -v ${HOST_MODEL_FOLDER}:${DOCKER_MODEL_FOLDER} \
             -v ${HOST_CACHE_FOLDER}:${DOCKER_CACHE_FOLDER} \
             ${DOCKER_IMAGE}
+        ;;
+    test)
+        if [ -z $1 ]; then
+            ENV="env_llama3"
+        else
+            ENV="$1"
+        fi
+
+        source $ENV
+
+        curl -v --request POST \
+             --url http://localhost:${PORT}/completion \
+             --header "Authorization: Bearer ${API_KEY}" \
+             --header "Content-Type: application/json" \
+             --data '{
+                "prompt": "Wikipedia is",
+                "max_tokens": 16
+             }'
         ;;
     *)
 esac

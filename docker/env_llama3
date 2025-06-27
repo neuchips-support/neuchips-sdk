@@ -6,5 +6,5 @@ MODEL=Meta-Llama-3-8B-Instruct-F16.gguf
 CHAT_TEMPLATE=llama3
 CONTAINER_NAME=llama3_8b
 PORT=8080
-NUM_N3K=1
+N3K_ID=0
 API_KEY=neuchips_testkey_llama3

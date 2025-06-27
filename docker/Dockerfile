@@ -7,16 +7,15 @@ RUN apt-get update && \
     update-ca-certificates
 RUN apt-get install -y --no-install-recommends \
         wget \
-        pciutils
+        pciutils \
+        moreutils
 RUN apt-get clean
 
-RUN mkdir /neuchips
+RUN mkdir -p /neuchips/llama.cpp
 
-# Download Neuchips SDK
-RUN wget https://github.com/neuchips-support/neuchips-sdk/archive/refs/tags/LLM_SDK_1.4.1.tar.gz -O - | tar -zxvf - -C /neuchips/ \
-    && cp -r /neuchips/neuchips-sdk-LLM_SDK_1.4.1/sdk_linux/llama.cpp /neuchips \
-    && cp /neuchips/neuchips-sdk-LLM_SDK_1.4.1/sdk_linux/conda/env_linux.yml /env.yml \
-    && rm -f /sdk.tgz
+COPY sdk_linux/llama.cpp /neuchips/llama.cpp
+COPY sdk_linux/neu_pytorch_extension/neutorch/conda/env_linux.yml /env.yml
+COPY docker/start-neuchips-service.sh /neuchips
 
 # === Conda ===
 # Download the Miniconda installation script and install Miniconda
@@ -35,8 +34,5 @@ RUN conda env create -f /env.yml \
     && echo "source activate neutorch" >> ~/.bashrc \
     && echo "conda activate neutorch" >> ~/.bashrc \
     && rm -f /env.yml
-
-# Download dockerfile
-RUN wget https://github.com/neuchips-support/neuchips-sdk/releases/download/LLM_SDK_1.4.1/start-neuchips-service.sh -O /neuchips/start-neuchips-service.sh
 
 CMD ["/bin/bash", "/neuchips/start-neuchips-service.sh" ]
