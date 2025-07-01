@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOCKER_IMAGE="neuchips/viper_prod:v1.2"
+DOCKER_IMAGE="neuchips/viper_prod:v1.4.1"
 
 CMD=$1
 

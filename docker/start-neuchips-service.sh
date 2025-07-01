@@ -19,7 +19,7 @@ ${LLAMA_ROOT}/llama-server -m ${MODEL_PATH} \
     --host 0.0.0.0 \
     --port ${PORT} \
     --api-key ${API_KEY} \
-    --n3k-id ${N3K_ID} \
+    --nr-devices ${NUM_N3K} \
     --slots \
     --metrics \
     --neutorch-cache-path ${CACHE_PATH} \

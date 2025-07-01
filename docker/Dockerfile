@@ -14,7 +14,7 @@ RUN apt-get clean
 RUN mkdir -p /neuchips/llama.cpp
 
 COPY sdk_linux/llama.cpp /neuchips/llama.cpp
-COPY sdk_linux/neu_pytorch_extension/neutorch/conda/env_linux.yml /env.yml
+COPY sdk_linux/conda/env_linux.yml /env.yml
 COPY docker/start-neuchips-service.sh /neuchips
 
 # === Conda ===
