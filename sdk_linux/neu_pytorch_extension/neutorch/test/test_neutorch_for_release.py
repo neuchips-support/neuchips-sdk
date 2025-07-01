@@ -28,7 +28,6 @@ from transformers import (
     pipeline,
 )
 
-from neutorch.conversion.linear import neu_linear
 from path_utils import get_model_path
 
 
@@ -51,7 +50,7 @@ class LLMTestbed:
                 torch_dtype="auto",
                 trust_remote_code=True,
                 low_cpu_mem_usage=True,
-                attn_implementation="eager"
+                attn_implementation="eager",
             ).to(torch.bfloat16)
             tokenizer = tokenizer_class.from_pretrained(
                 model_path, trust_remote_code=True
@@ -61,7 +60,7 @@ class LLMTestbed:
                 model_path,
                 torch_dtype=torch.bfloat16,
                 low_cpu_mem_usage=True,
-                attn_implementation="eager"
+                attn_implementation="eager",
             )
             tokenizer = tokenizer_class.from_pretrained(model_path)
 
@@ -100,7 +99,6 @@ class LLMTestbed:
         self,
         test_model,
         compiled_model_path,
-        use_emb,
         use_matrix,
         usage_pattern,
         prompt,
@@ -112,7 +110,6 @@ class LLMTestbed:
         answer = self.__test_model_logits(
             test_model,
             compiled_model_path,
-            use_emb,
             use_matrix,
             usage_pattern,
             prompt,
@@ -147,7 +144,6 @@ class LLMTestbed:
         self,
         test_model,
         compiled_model_path,
-        use_emb,
         use_matrix,
         usage_pattern,
         prompt,
@@ -162,9 +158,7 @@ class LLMTestbed:
         # Specified your devices
         device_ids = neutorch._C.get_available_devices()
         print(device_ids)
-        neutorch._C.set_device(
-            device_ids[:1], use_emb=use_emb, use_matrix=use_matrix
-        )  # single card
+        neutorch._C.set_device(device_ids[:1], use_matrix=use_matrix)  # single card
 
         compiled_model_path_ = self.handle_model_path(compiled_model_path)
         print("Specified load model from", compiled_model_path_)
@@ -223,7 +217,6 @@ class ArgParser:
         self.default_test_model = get_model_path("meta-llama/Llama-2-7b-hf")
         # self.default_test_model = get_model_path("meta-llama/Llama-2-13b-chat-hf")
         self.default_compiled_model_path = None
-        self.default_use_emb = True
         self.default_use_matrix = True
         self.default_usage_pattern = "general"
         self.default_prompt = "Once upon a time, there existed a little girl who liked to have adventures. She wanted to go to places and meet new people, and have fun"
@@ -246,12 +239,6 @@ class ArgParser:
             type=str,
             help=f"Path to load the precompiled model (default is empty).",
             default=self.default_compiled_model_path,
-        )
-        arg_parser.add_argument(
-            "--use_emb",
-            type=bool,
-            help=f"Model inference by EMB and Vector engines (default is '{self.default_use_emb}')",
-            default=self.default_use_emb,
         )
         arg_parser.add_argument(
             "--use_matrix",
@@ -293,7 +280,6 @@ class ArgParser:
         args = arg_parser.parse_args()
         test_model = args.test_model
         compiled_model_path = args.compiled_model_path
-        use_emb = args.use_emb
         use_matrix = args.use_matrix
         usage_pattern = args.usage_pattern
         prompt = args.prompt
@@ -303,7 +289,6 @@ class ArgParser:
 
         print("test_model :", test_model)
         print("compiled_model_path :", compiled_model_path)
-        print("use_emb :", use_emb)
         print("use_matrix :", use_matrix)
         print("usage_pattern: ", usage_pattern)
         print("prompt :", prompt)
@@ -316,7 +301,6 @@ class ArgParser:
         return [
             test_model,
             compiled_model_path,
-            use_emb,
             use_matrix,
             usage_pattern,
             prompt,
@@ -331,7 +315,6 @@ def main():
     [
         test_model,
         compiled_model_path,
-        use_emb,
         use_matrix,
         usage_pattern,
         prompt,
@@ -345,7 +328,6 @@ def main():
     testbed.run(
         test_model,
         compiled_model_path,
-        use_emb,
         use_matrix,
         usage_pattern,
         prompt,

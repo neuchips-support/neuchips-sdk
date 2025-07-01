@@ -12,7 +12,7 @@ The extension can be loaded as a Python module for Python programs. In Python sc
 * (Suggested) From a proven conda environment yml file
 
 ```bash
-conda env create -f neu_pytorch_extension/neutorch/conda/env_windows.yml
+conda env create -f conda/env_windows.yml
 ```
 
 * (Create your) With commands
@@ -45,7 +45,7 @@ copy c:\Users\<USER_NAME>\AppData\Local\Programs\Python\Python310\libs\python3_d
 Once you have obtained the Neuchips PyTorch extension, you can easily install it via `pip`, the installation command is as follows:
 
 ```
-cd script/
+cd script/neutorch
 conda activate neutorch
 python3 gen_requires.py win
 pip3 install --force-reinstall --no-index -r requirements.txt
@@ -97,14 +97,27 @@ We currently only support Hugging Face Transformers-formatted models (LlamaForCa
 | | https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3 |
 | Mistral Nemo | https://huggingface.co/mistralai/Mistral-Nemo-Base-2407 |
 | | https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407 |
+| Ministral 8B | https://huggingface.co/mistralai/Ministral-8B-Instruct-2410 |
 | Breeze 7B | https://huggingface.co/MediaTek-Research/Breeze-7B-Base-v1_0 |
 | | https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0 |
 | Phi-2 | https://huggingface.co/microsoft/phi-2 |
 | Phi-3-mini-4k-instruct | https://huggingface.co/microsoft/Phi-3-mini-4k-instruct |
+| Phi-3.5-mini-instruct | https://huggingface.co/microsoft/Phi-3.5-mini-instruct |
 | Gemma 2 9B | https://huggingface.co/google/gemma-2-9b |
 | | https://huggingface.co/google/gemma-2-9b-it |
 | TAIDE-LX-7B | https://huggingface.co/taide/TAIDE-LX-7B |
 | | https://huggingface.co/taide/TAIDE-LX-7B-Chat |
+| Qwen 2.5 7B | https://huggingface.co/Qwen/Qwen2.5-7B |
+| | https://huggingface.co/Qwen/Qwen2.5-7B-Instruct |
+| Qwen 2.5 14B | https://huggingface.co/Qwen/Qwen2.5-14B |
+| | https://huggingface.co/Qwen/Qwen2.5-14B-Instruct |
+| DeepSeek R1 Distill Llama 8B | https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B |
+| DeepSeek R1 Distill Qwen 7B | https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B |
+| DeepSeek R1 Distill Qwen 14B | https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B |
+| Yi 1.5 9B | https://huggingface.co/01-ai/Yi-1.5-9B |
+| | https://huggingface.co/01-ai/Yi-1.5-9B-Chat |
+| Yi Coder 9B | https://huggingface.co/01-ai/Yi-Coder-9B |
+| | https://huggingface.co/01-ai/Yi-Coder-9B-Chat |
 
 
 # Performance

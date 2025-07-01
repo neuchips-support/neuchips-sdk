@@ -72,14 +72,13 @@ Get available devices.
 <br>
 
 ```python
-neutorch._C.set_device(device_list, use_emb=True, use_matrix=False)
+neutorch._C.set_device(device_list, use_matrix=False)
 ```
-Set a list of devices for use and determine which engines, if any, are used for acceleration.
+Sets the list of devices and determines whether to enable the matrix engine for prompt acceleration.
 
 ### Parameters
-* device_list (<em>list of strings</em>): List of devices to be used.
-* use_emb (<em>bool</em>): Enable embedding and vector engine acceleration. Default is <code>True</code>.
-* use_matrix (<em>bool</em>): Enable matrix engine acceleration, especially for long prompts. Default is <code>False</code>.
+* device_list (<em>list of str</em>): List of devices to be used.
+* use_matrix (<em>bool</em>): Enable matrix engine acceleration, particularly for long prompts. Default is <code>False</code>.
 
 ### Returns
 * <em>None</em>
