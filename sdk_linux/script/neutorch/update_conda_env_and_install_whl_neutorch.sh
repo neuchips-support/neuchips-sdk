@@ -1,7 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# please make sure you already installed conda environment to ~/anaconda3 path first
-source ~/anaconda3/etc/profile.d/conda.sh
+if ! command -v conda &>/dev/null; then
+  if [[ -f "$HOME/anaconda3/bin/conda" ]]; then
+    export PATH="$HOME/anaconda3/bin:$PATH"
+  elif [[ -f "$HOME/miniconda3/bin/conda" ]]; then
+    export PATH="$HOME/miniconda3/bin:$PATH"
+  else
+    echo "Error: conda command not found. Please install Anaconda or Miniconda first." >&2
+    exit 1
+  fi
+fi
+
+CONDA_BASE=$(conda info --base) || {
+  echo "Error: could not determine Conda base path." >&2
+  exit 1
+}
+
+CONDA_SH="$CONDA_BASE/etc/profile.d/conda.sh"
+if [[ -f "$CONDA_SH" ]]; then
+  source "$CONDA_SH"
+else
+  echo "Error: cannot find $CONDA_SH." >&2
+  exit 1
+fi
 
 ENV_NAME="neutorch"
 ENV_FILE_PATH="../../conda/env_linux.yml"

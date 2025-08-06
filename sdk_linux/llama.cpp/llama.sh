@@ -11,7 +11,7 @@ fi
 PYTHON_SITEPACKAGE=`python -c "import sysconfig; print(sysconfig.get_path('purelib'))"`
 if [ ! -z $PYTHON_SITEPACKAGE ]; then
   if [ -d $PYTHON_SITEPACKAGE/torch/lib ]; then
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PYTHON_SITEPACKAGE/torch/lib
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PYTHON_SITEPACKAGE/../..:$PYTHON_SITEPACKAGE/torch/lib
   fi
 fi
 

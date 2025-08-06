@@ -103,17 +103,23 @@ We currently only support Hugging Face Transformers-formatted models (LlamaForCa
 | Phi-2 | https://huggingface.co/microsoft/phi-2 |
 | Phi-3-mini-4k-instruct | https://huggingface.co/microsoft/Phi-3-mini-4k-instruct |
 | Phi-3.5-mini-instruct | https://huggingface.co/microsoft/Phi-3.5-mini-instruct |
+| Phi-4-mini-instruct  | https://huggingface.co/microsoft/Phi-4-mini-instruct |
+| Phi-4-mini-reasoning | https://huggingface.co/microsoft/Phi-4-mini-reasoning |
 | Gemma 2 9B | https://huggingface.co/google/gemma-2-9b |
 | | https://huggingface.co/google/gemma-2-9b-it |
 | TAIDE-LX-7B | https://huggingface.co/taide/TAIDE-LX-7B |
 | | https://huggingface.co/taide/TAIDE-LX-7B-Chat |
+| TAIDEL-LX-8B | https://huggingface.co/taide/Llama-3.1-TAIDE-LX-8B-Chat |
 | Qwen 2.5 7B | https://huggingface.co/Qwen/Qwen2.5-7B |
 | | https://huggingface.co/Qwen/Qwen2.5-7B-Instruct |
 | Qwen 2.5 14B | https://huggingface.co/Qwen/Qwen2.5-14B |
 | | https://huggingface.co/Qwen/Qwen2.5-14B-Instruct |
+| Qwen 3 8B | https://huggingface.co/Qwen/Qwen3-8B |
+| Qwen 3 14B | https://huggingface.co/Qwen/Qwen3-14B |
 | DeepSeek R1 Distill Llama 8B | https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B |
 | DeepSeek R1 Distill Qwen 7B | https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B |
 | DeepSeek R1 Distill Qwen 14B | https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B |
+| DeepSeek R1 0528 Qwen 3B | https://huggingface.co/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B |
 | Yi 1.5 9B | https://huggingface.co/01-ai/Yi-1.5-9B |
 | | https://huggingface.co/01-ai/Yi-1.5-9B-Chat |
 | Yi Coder 9B | https://huggingface.co/01-ai/Yi-Coder-9B |

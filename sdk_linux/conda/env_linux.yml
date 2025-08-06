@@ -89,10 +89,10 @@ dependencies:
   - zlib=1.2.13=h5eee18b_0
   - zstd=1.5.5=hc292b87_0
   - pip:
-      - accelerate==0.23.0
+      - accelerate==1.8.1
       - build==1.2.2
       - fsspec==2023.9.2
-      - huggingface-hub==0.24.0
+      - huggingface-hub==0.33.1
       - importlib-resources==6.1.0
       - ninja==1.11.1
       - packaging==23.1
@@ -101,8 +101,8 @@ dependencies:
       - psutil==5.9.5
       - pybind11==2.11.1
       - regex==2023.8.8
-      - safetensors==0.4.3
-      - sentencepiece==0.1.99
-      - tokenizers==0.19.1
+      - safetensors==0.5.3
+      - sentencepiece==0.2.0
+      - tokenizers==0.21.2
       - tqdm==4.66.1
-      - transformers==4.43.2
+      - transformers==4.53.0
