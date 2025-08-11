@@ -1,0 +1,10 @@
+NUM_N3K=1
+HOST_MODEL_FOLDER=/neuchips/models_zoo
+DOCKER_MODEL_FOLDER=/neuchips/models_zoo
+HOST_CACHE_FOLDER=/neuchips/models_cache/data.NRDEVS${NUM_N3K}.gemma-3-4b-it
+DOCKER_CACHE_FOLDER=/data
+MODEL=gemma-3-4b-it-f16.gguf
+CONTAINER_NAME=gemma3_4b
+PORT=8080
+API_KEY=neuchips_testkey_llama3
+OMP_NUM_THREADS=1

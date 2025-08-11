@@ -29,7 +29,9 @@ ENV PATH=/neuchips/conda/bin:$PATH
 
 # Use conda to create the environment, regardless of how ENV_FILE is specified,
 # use /env.yml as the environment file
-RUN conda env create -f /env.yml \
+RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
+    && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
+    && conda env create -f /env.yml \
     && conda clean -afy \
     && echo "source activate neutorch" >> ~/.bashrc \
     && echo "conda activate neutorch" >> ~/.bashrc \

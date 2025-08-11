@@ -1,0 +1,10 @@
+NUM_N3K=1
+HOST_MODEL_FOLDER=/neuchips/models_zoo
+DOCKER_MODEL_FOLDER=/neuchips/models_zoo
+HOST_CACHE_FOLDER=/neuchips/models_cache/data.NRDEVS${NUM_N3K}.llama-3-8b
+DOCKER_CACHE_FOLDER=/data
+MODEL=Meta-Llama-3-8B-Instruct-F16.gguf
+CONTAINER_NAME=llama3_8b
+PORT=8080
+API_KEY=neuchips_testkey_llama3
+OMP_NUM_THREADS=1
