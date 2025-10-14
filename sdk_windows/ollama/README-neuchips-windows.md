@@ -7,7 +7,7 @@ No more WSL required!
 Ollama now runs as a native Windows application, including NVIDIA and AMD Radeon GPU support.
 After installing Ollama for Windows, Ollama will run in the background and
 the `ollama` command line is available in `cmd`, `powershell` or your favorite
-terminal application. As usual the Ollama [api](./api.md) will be served on
+terminal application. As usual the Ollama [api](https://github.com/ollama/ollama/blob/main/docs/api.md) will be served on
 `http://localhost:11434`.
 
 ## System Requirements
@@ -27,14 +27,43 @@ Neuchips Ollama requires Neuchips' SDK and Conda environment. Install Miniconda3
 Refer to [sdk_windows](https://github.com/neuchips-support/neuchips-sdk/tree/main/sdk_windows) for how to setup this requirement.
 
 > [!NOTE]
-> must finish this requirement before proceed.
+> must fulfill this requirement before proceed. If you prefer to use Python venv, please refer to python venv requirements as below.
+
+## Neuchips SDK and Python VENV Requirements
+
+Neuchips' SDK can also run inside python venv. Please follow below steps to resolve package dependencies.
+
+1. Use python version 3.10.x. Ollama executable and Neuchips SDK are tested under Python 3.10.x environment.
+   Please check your Python verion is also 3.10.x to avoid unexpected errors.
+```bat
+Win+R -> cmd -> Microsof Windows Command Prompt
+C:\Users\username>python -V
+Python 3.10.11
+```
+* If Python is installed from Microsoft Store, please choose Python 3.10 to install instead of the newest Python 3.13.
+
+2. Create **venv-neuchips-sdk** venv. Please do NOT change **venv-neuchips-sdk** to other name. 
+   The venv must be created under %USERPROFILE% path in Microsoft Windows Command Prompt.
+```bat
+cd %USERPROFILE%
+python -m venv venv-neuchips-sdk
+```
+3. Install required Python packages.
+```bat
+cd %USERPROFILE%
+.\venv-neuchips-sdk\Scripts\activate
+python -m pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+> [!NOTE]
+> must fulfill this requirement before proceed.
 
 ### Changing Install Location
 
 To install the Ollama application in a location different than your home directory, start the installer with the following flag
 
 ```powershell
-OllamaSetup.exe /DIR="d:\some\location"
+NeuchipsOllamaSetup.exe /DIR="d:\some\location"
 ```
 
 ## API Access
@@ -42,7 +71,8 @@ OllamaSetup.exe /DIR="d:\some\location"
 Here's a quick example showing API access from `powershell`
 
 ```powershell
-(Invoke-WebRequest -method POST -Body '{"model":"llama3.2", "prompt":"Why is the sky blue?", "stream": false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
+Invoke-WebRequest -method POST -body '{"name":"llama3.1:8b", "insecure": false}' -uri http://localhost:11434/api/pull
+(Invoke-WebRequest -method POST -body '{"model":"llama3.1:8b", "prompt":"Why is the sky blue?", "stream": false}' -uri http://localhost:11434/api/generate ).Content | ConvertFrom-json
 ```
 
 ## Troubleshooting
@@ -56,7 +86,7 @@ the explorer window by hitting `<Ctrl>+R` and type in:
 - `explorer %LOCALAPPDATA%\Programs\Ollama` contains the binaries (The installer adds this to your user PATH)
 - `explorer %HOMEPATH%\.ollama` contains models and configuration
 > [!NOTE]
-> Neuchips ollama versions update is done via latest OllamaSetup*.exe installatin, not updated from live update.
+> Neuchips ollama versions update is done via latest **NeuchipsOllamaSetup.exe** installation, not updated from live update.
 
 ## Uninstall
 
@@ -64,7 +94,7 @@ The Ollama Windows installer registers an Uninstaller application.  Under `Add o
 
 ## Standalone CLI
 
-The easiest way to install Ollama on Windows is to use the `OllamaSetup.exe`
+The easiest way to install Ollama on Windows is to use the `NeuchipsOllamaSetup.exe`
 installer. It installs in your account without requiring Administrator rights.
 We update Ollama regularly to support the latest models, and this installer will
 help you keep up to date.
